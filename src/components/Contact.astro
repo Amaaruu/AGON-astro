@@ -1,0 +1,43 @@
+---
+import ContactForm from './ContactForm.astro';
+import { whatsappUrl } from '../data/site';
+
+const pasos = [
+  { title: 'Te contactamos', text: 'Un asesor te escribe o llama en el horario que prefieras.' },
+  { title: 'Revisamos tu caso', text: 'Miramos tu plan actual, cómo lo usas y lo que te preocupa.' },
+  { title: 'Decides informado', text: 'Te explicamos tus opciones con claridad. Sin presión.' },
+];
+---
+
+<section id="contacto" class="section scroll-mt-16 bg-gradient-to-b from-white to-brand-50/60">
+  <div class="container-agon grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+    <div>
+      <p class="eyebrow">Conversemos</p>
+      <h2 class="mt-2 text-3xl sm:text-4xl">Estamos aquí para ayudarte <span aria-hidden="true">🤝</span></h2>
+      <p class="mt-4 text-lg text-slate-500">
+        Ya sea que quieras entender tu plan, resolver un problema con tu isapre o evaluar un cambio, empecemos por
+        conversar.
+      </p>
+
+      <ol class="mt-8 space-y-5">
+        {pasos.map((p, i) => (
+          <li class="flex gap-4">
+            <span class="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-brand-700 text-sm font-bold text-white">{i + 1}</span>
+            <div>
+              <p class="font-semibold text-brand-950">{p.title}</p>
+              <p class="text-slate-500">{p.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div class="mt-10 rounded-2xl border border-slate-200 bg-white p-5">
+        <p class="font-semibold text-brand-950">¿Prefieres hablar ahora?</p>
+        <p class="mt-1 text-sm text-slate-500">Escríbenos directamente y te respondemos a la brevedad.</p>
+        <a href={whatsappUrl} target="_blank" rel="noopener" class="btn-secondary mt-4">Escribir por WhatsApp</a>
+      </div>
+    </div>
+
+    <ContactForm />
+  </div>
+</section>

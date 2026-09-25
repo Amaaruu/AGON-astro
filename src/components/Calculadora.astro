@@ -1,0 +1,55 @@
+---
+import { indicadores } from '../data/site';
+
+const clp = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 });
+---
+
+<section id="calculadora" class="section scroll-mt-16 bg-brand-950 text-white">
+  <div class="container-agon grid items-center gap-12 lg:grid-cols-2">
+    <div>
+      <p class="eyebrow !text-accent-400">Calculadora</p>
+      <h2 class="mt-2 text-3xl !text-white sm:text-4xl">¿Cuánto es tu 7% y cuánto pagas de más?</h2>
+      <p class="mt-4 text-lg text-brand-100">
+        Es el primer número que deberías conocer. Con él sabes si tu plan te está costando más de lo que cotizas por ley
+        o si podrías tener excedentes a tu favor.
+      </p>
+      <p class="mt-6 text-sm text-brand-300">
+        Cálculo referencial con UF {clp.format(indicadores.uf)} y tope imponible de {indicadores.topeImponibleUF} UF.
+        Aplica a trabajadores dependientes.
+      </p>
+    </div>
+
+    <form id="calc-7" class="rounded-2xl bg-white p-6 text-slate-700 shadow-2xl shadow-black/20 sm:p-8" novalidate>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="sm:col-span-2">
+          <label for="calc-renta" class="field-label">Renta imponible mensual</label>
+          <input id="calc-renta" name="renta" type="text" inputmode="numeric" class="field-input" placeholder="Ej: $1.500.000" autocomplete="off" />
+          <p class="mt-1 text-xs text-slate-400">Aparece en tu liquidación de sueldo como “total imponible”.</p>
+        </div>
+        <div class="sm:col-span-2">
+          <label for="calc-plan" class="field-label">Valor de tu plan en UF <span class="font-normal text-slate-400">(opcional)</span></label>
+          <input id="calc-plan" name="plan" type="text" inputmode="decimal" class="field-input" placeholder="Ej: 3,2" autocomplete="off" />
+          <p class="mt-1 text-xs text-slate-400">Si estás en isapre, lo encuentras en tu contrato o liquidación.</p>
+        </div>
+      </div>
+
+      <div class="mt-6 grid gap-3 sm:grid-cols-2" aria-live="polite">
+        <div class="rounded-xl bg-brand-50 p-4">
+          <p class="text-xs font-semibold tracking-wide text-brand-700 uppercase">Tu 7% legal</p>
+          <p id="calc-siete" class="mt-1 text-2xl font-bold text-brand-950">—</p>
+        </div>
+        <div id="calc-diff-box" class="rounded-xl bg-slate-50 p-4">
+          <p id="calc-diff-label" class="text-xs font-semibold tracking-wide text-slate-500 uppercase">Diferencia con tu plan</p>
+          <p id="calc-diff" class="mt-1 text-2xl font-bold text-slate-400">—</p>
+        </div>
+      </div>
+      <p id="calc-note" class="mt-4 text-sm text-slate-500">Ingresa tu renta para ver el cálculo.</p>
+      <a href="#contacto" class="btn-secondary mt-5 w-full">Quiero entender mi resultado</a>
+    </form>
+  </div>
+</section>
+
+<script>
+  import { initCalculadora } from '../scripts/calculadora';
+  initCalculadora('calc-7');
+</script>

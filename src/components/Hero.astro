@@ -1,32 +1,49 @@
 ---
-import QuoteForm from './QuoteForm.astro';
+const highlights = ['Asesoría sin costo', 'Isapre y Fonasa', 'Todas las isapres abiertas'];
 
-const highlights = [
-  'Comparamos todas las isapres abiertas',
-  'Asesoría 100% gratuita',
-  'Te acompañamos hasta la firma',
+// Tarjeta ilustrativa: lo que revisamos contigo
+const checklist = [
+  { title: 'Tu 7% y cuánto pagas de más', status: 'Revisado', tone: 'ok' },
+  { title: 'Carta de alza y tus opciones', status: 'Tienes alternativas', tone: 'warn' },
+  { title: 'GES y CAEC: cómo activarlos', status: 'Te explicamos', tone: 'info' },
+  { title: 'Clínicas preferentes y topes', status: 'Revisado', tone: 'ok' },
 ];
+const tones: Record<string, string> = {
+  ok: 'bg-emerald-50 text-emerald-700',
+  warn: 'bg-amber-50 text-amber-700',
+  info: 'bg-brand-50 text-brand-700',
+};
 ---
 
-<section id="cotizar" class="relative overflow-hidden bg-gradient-to-br from-brand-950 via-brand-900 to-brand-700 scroll-mt-16">
+<section class="relative overflow-hidden bg-gradient-to-br from-brand-950 via-brand-900 to-brand-700">
   <div class="pointer-events-none absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-brand-500/30 blur-3xl"></div>
   <div class="pointer-events-none absolute -bottom-40 -left-20 h-[400px] w-[400px] rounded-full bg-accent-500/20 blur-3xl"></div>
 
-  <div class="container-agon relative grid items-center gap-12 py-16 lg:grid-cols-2 lg:py-24">
+  <div class="container-agon relative grid items-center gap-12 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:py-24">
     <div class="text-white">
       <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-brand-100">
-        <span class="h-2 w-2 rounded-full bg-accent-400"></span> Asesoría en planes de salud · Chile
+        <span class="h-2 w-2 rounded-full bg-accent-400"></span> Asesoría honesta en salud · Chile
       </span>
       <h1 class="mt-6 text-4xl leading-tight !text-white sm:text-5xl">
-        Encuentra el plan de isapre <span class="text-accent-400">que de verdad te conviene</span>
+        Entiende tu plan de salud. <span class="text-accent-400">Decide con tranquilidad.</span>
       </h1>
-      <p class="mt-5 max-w-lg text-lg text-brand-100">
-        Déjanos tus datos y un asesor AGON compara por ti los planes según tu edad, renta, cargas y región.
+      <p class="mt-5 max-w-xl text-lg text-brand-100">
+        No queremos que cambies de isapre porque sí. Te explicamos cómo funciona realmente el sistema, cuáles son tus
+        derechos y qué opciones tienes, para que elijas lo que de verdad te conviene.
       </p>
-      <ul class="mt-8 space-y-3">
+
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href="#chequeo" class="btn-primary !bg-white !text-brand-800 hover:!bg-brand-50">
+          Haz el chequeo gratis
+          <span class="text-xs font-medium text-brand-500">2 min</span>
+        </a>
+        <a href="#contacto" class="btn-secondary !border-white/30 !bg-transparent !text-white hover:!bg-white/10">Conversemos</a>
+      </div>
+
+      <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2">
         {highlights.map((h) => (
-          <li class="flex items-center gap-3 text-brand-50">
-            <svg class="h-5 w-5 flex-none text-accent-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <li class="flex items-center gap-2 text-sm text-brand-50">
+            <svg class="h-4 w-4 flex-none text-accent-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L8 12.6l7.3-7.3a1 1 0 0 1 1.4 0Z" clip-rule="evenodd" />
             </svg>
             {h}
@@ -35,6 +52,34 @@ const highlights = [
       </ul>
     </div>
 
-    <QuoteForm />
+    <div class="relative" aria-hidden="true">
+      <div class="rounded-2xl bg-white p-6 shadow-2xl shadow-brand-950/30 sm:p-7">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-xs font-semibold tracking-wider text-slate-400 uppercase">Revisión de tu plan</p>
+            <p class="mt-1 text-lg font-bold text-brand-950">Lo que miramos contigo</p>
+          </div>
+          <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 9 2 2 4-4" />
+            </svg>
+          </div>
+        </div>
+        <ul class="mt-6 space-y-3">
+          {checklist.map((c) => (
+            <li class="flex items-center justify-between gap-3 rounded-xl border border-slate-100 bg-slate-50/60 px-4 py-3">
+              <span class="text-sm font-medium text-slate-700">{c.title}</span>
+              <span class={`flex-none rounded-full px-2.5 py-1 text-[11px] font-semibold ${tones[c.tone]}`}>{c.status}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-5 border-t border-slate-100 pt-4 text-sm text-slate-500">
+          <span class="font-semibold text-brand-800">Si tu plan actual es el indicado, te lo diremos.</span> Nuestro trabajo es que decidas informado.
+        </p>
+      </div>
+      <div class="absolute -bottom-5 -left-4 hidden rounded-xl bg-accent-400 px-4 py-2.5 text-sm font-semibold text-brand-950 shadow-lg sm:block">
+        Cientos de personas asesoradas
+      </div>
+    </div>
   </div>
 </section>

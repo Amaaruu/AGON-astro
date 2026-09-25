@@ -1,0 +1,111 @@
+---
+import { previsiones } from '../data/isapres';
+import { regiones, rangosRenta, opcionesCargas } from '../data/regiones';
+import { motivos } from '../data/motivos';
+---
+
+<div class="rounded-2xl bg-white p-6 shadow-2xl shadow-brand-950/10 ring-1 ring-slate-200 sm:p-8">
+  <h3 class="text-2xl">Cuéntanos tu caso</h3>
+  <p class="mt-1 text-sm text-slate-500">Toma menos de 1 minuto. Sin costo ni compromiso.</p>
+
+  <form id="contact-form" class="mt-6 grid gap-4 sm:grid-cols-2" novalidate>
+    <input type="hidden" name="chequeo" value="" />
+    <div data-chequeo-badge class="hidden items-start gap-2 rounded-xl bg-emerald-50 px-4 py-3 text-sm text-emerald-800 sm:col-span-2">
+      <svg class="mt-0.5 h-4 w-4 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L8 12.6l7.3-7.3a1 1 0 0 1 1.4 0Z" clip-rule="evenodd" />
+      </svg>
+      <span>Adjuntaremos el resultado de tu chequeo para que el asesor llegue preparado.</span>
+    </div>
+
+    <div class="sm:col-span-2">
+      <label for="nombre" class="field-label">Nombre</label>
+      <input id="nombre" name="nombre" type="text" class="field-input" placeholder="Ej: Camila Rojas" autocomplete="name" required minlength="3" />
+      <p class="field-error hidden" data-error-for="nombre">Ingresa tu nombre.</p>
+    </div>
+
+    <div>
+      <label for="telefono" class="field-label">Teléfono</label>
+      <input id="telefono" name="telefono" type="tel" class="field-input" placeholder="+56 9 1234 5678" autocomplete="tel" required />
+      <p class="field-error hidden" data-error-for="telefono">Ingresa un celular válido (9 dígitos).</p>
+    </div>
+
+    <div>
+      <label for="email" class="field-label">Email</label>
+      <input id="email" name="email" type="email" class="field-input" placeholder="tucorreo@email.com" autocomplete="email" required />
+      <p class="field-error hidden" data-error-for="email">Ingresa un email válido.</p>
+    </div>
+
+    <div class="sm:col-span-2">
+      <label for="motivo" class="field-label">¿Qué te gustaría resolver?</label>
+      <select id="motivo" name="motivo" class="field-input" required>
+        <option value="" disabled selected>Selecciona una opción</option>
+        {motivos.map((m) => <option value={m.value}>{m.label}</option>)}
+      </select>
+      <p class="field-error hidden" data-error-for="motivo">Selecciona una opción.</p>
+    </div>
+
+    <div class="sm:col-span-2">
+      <label for="prevision" class="field-label">Previsión actual</label>
+      <select id="prevision" name="prevision" class="field-input" required>
+        <option value="" disabled selected>Selecciona</option>
+        {previsiones.map((p) => <option value={p.value}>{p.label}</option>)}
+      </select>
+      <p class="field-error hidden" data-error-for="prevision">Selecciona una opción.</p>
+    </div>
+
+    <details class="group rounded-xl border border-slate-200 px-4 sm:col-span-2">
+      <summary class="flex cursor-pointer list-none items-center justify-between py-3 text-sm font-semibold text-brand-800 [&::-webkit-details-marker]:hidden">
+        Agregar más detalles <span class="font-normal text-slate-400">(opcional)</span>
+        <svg class="ml-auto h-4 w-4 text-brand-600 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6" />
+        </svg>
+      </summary>
+      <div class="grid gap-4 pb-4 sm:grid-cols-2">
+        <div>
+          <label for="edad" class="field-label">Edad</label>
+          <input id="edad" name="edad" type="number" inputmode="numeric" min="18" max="99" class="field-input" placeholder="Ej: 32" />
+          <p class="field-error hidden" data-error-for="edad">Edad entre 18 y 99 años.</p>
+        </div>
+        <div>
+          <label for="cargas" class="field-label">N.º de cargas</label>
+          <select id="cargas" name="cargas" class="field-input">
+            {opcionesCargas.map((c) => <option value={c}>{c}</option>)}
+          </select>
+        </div>
+        <div>
+          <label for="renta" class="field-label">Renta líquida mensual</label>
+          <select id="renta" name="renta" class="field-input">
+            <option value="" selected>Prefiero no decir</option>
+            {rangosRenta.map((r) => <option value={r.value}>{r.label}</option>)}
+          </select>
+        </div>
+        <div>
+          <label for="region" class="field-label">Región</label>
+          <select id="region" name="region" class="field-input">
+            <option value="" selected>Selecciona</option>
+            {regiones.map((r) => <option value={r}>{r}</option>)}
+          </select>
+        </div>
+        <div class="sm:col-span-2">
+          <label for="mensaje" class="field-label">Cuéntanos brevemente tu situación</label>
+          <textarea id="mensaje" name="mensaje" rows="3" class="field-input resize-y" placeholder="Ej: Me llegó una carta de alza y no sé si aceptarla."></textarea>
+        </div>
+      </div>
+    </details>
+
+    <label class="flex items-start gap-2 text-xs text-slate-500 sm:col-span-2">
+      <input type="checkbox" name="acepta" class="mt-0.5 h-4 w-4 rounded border-slate-300 accent-brand-700" required />
+      <span>Acepto que AGON me contacte para asesorarme. Mis datos se usan solo para esta asesoría.</span>
+    </label>
+    <p class="field-error hidden -mt-3 sm:col-span-2" data-error-for="acepta">Debes aceptar para continuar.</p>
+
+    <button type="submit" class="btn-primary mt-2 w-full sm:col-span-2">
+      <span data-label>Quiero que me contacten</span>
+    </button>
+  </form>
+</div>
+
+<script>
+  import { initContactForm } from '../scripts/contact-form';
+  initContactForm('contact-form');
+</script>
