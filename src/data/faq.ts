@@ -7,7 +7,7 @@ export interface FaqItem {
 export const faq: FaqItem[] = [
   {
     q: '¿La asesoría tiene algún costo?',
-    a: 'No. Cotizar y recibir asesoría con AGON no tiene costo para ti y no te obliga a contratar nada.',
+    a: 'No. Recibir asesoría con AGON no tiene costo para ti y no te obliga a contratar ni a cambiarte de nada.',
   },
   {
     q: '¿Cuánto se paga por salud en Chile?',
@@ -30,8 +30,12 @@ export const faq: FaqItem[] = [
     a: 'El GES (Garantías Explícitas en Salud) cubre un listado de problemas de salud con garantías de acceso, oportunidad y protección financiera, tanto en Fonasa como en isapres. La CAEC es una cobertura adicional para enfermedades catastróficas que ofrecen las isapres.',
   },
   {
-    q: '¿Qué datos necesito para cotizar?',
-    a: 'Solo tu edad, previsión actual, número de cargas, rango de renta y región. Con eso preparamos una comparación y te contactamos para revisarla contigo.',
+    q: '¿Me van a insistir en que me cambie de isapre?',
+    a: 'No. Nuestro objetivo es que entiendas tus opciones. Si tu plan actual es el que más te conviene, te lo diremos y te explicaremos cómo aprovecharlo mejor.',
+  },
+  {
+    q: '¿Qué necesito para que revisen mi caso?',
+    a: 'Solo tus datos de contacto, tu previsión actual y qué te gustaría resolver. Si tienes a mano tu liquidación de sueldo o tu contrato de isapre, la revisión será más precisa.',
   },
   {
     q: '¿Puedo volver a Fonasa si no me gusta la isapre?',

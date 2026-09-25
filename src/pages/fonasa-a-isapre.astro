@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CTA from '../components/CTA.astro';
+import Calculadora from '../components/Calculadora.astro';
 
 const puntos = [
   { title: 'Tu 7% va a un plan a tu medida', text: 'En Fonasa tu cotización se asigna a un tramo; en una isapre eliges un plan con coberturas y red de prestadores específicas.' },
@@ -18,7 +19,7 @@ const puntos = [
       <p class="mt-4 max-w-2xl text-lg text-brand-100">
         Cambiarse a una isapre puede darte más opciones de clínicas y coberturas. Te ayudamos a evaluar si te conviene y a elegir bien.
       </p>
-      <a href="/#cotizar" class="btn-primary mt-8 !bg-white !text-brand-800">Evaluar mi caso gratis</a>
+      <a href="/#contacto" class="btn-primary mt-8 !bg-white !text-brand-800">Evaluar mi caso gratis</a>
     </div>
   </section>
 
@@ -33,6 +34,8 @@ const puntos = [
       ))}
     </div>
   </section>
+
+  <Calculadora />
 
   <CTA title="¿Te conviene cambiarte?" text="Un asesor AGON revisa tu caso y te dice honestamente si una isapre es mejor para ti." />
 </Layout>

@@ -9,7 +9,7 @@ const year = new Date().getFullYear();
     <div>
       <Logo variant="light" />
       <p class="mt-4 max-w-xs text-sm leading-relaxed text-brand-200">
-        Asesoría independiente para comparar planes de salud en Chile. Te ayudamos a decidir con información clara.
+        Asesoría clara, cercana y honesta en salud. Te ayudamos a entender el sistema para que decidas con tranquilidad.
       </p>
     </div>
 
@@ -19,7 +19,8 @@ const year = new Date().getFullYear();
         {nav.map((item) => (
           <li><a href={item.href} class="hover:text-white">{item.label}</a></li>
         ))}
-        <li><a href="/#cotizar" class="hover:text-white">Cotizar</a></li>
+        <li><a href="/isapres" class="hover:text-white">Isapres</a></li>
+        <li><a href="/#contacto" class="hover:text-white">Conversemos</a></li>
       </ul>
     </div>
 
@@ -34,7 +35,7 @@ const year = new Date().getFullYear();
   <div class="border-t border-white/10">
     <div class="container-agon flex flex-col gap-2 py-6 text-xs text-brand-300 sm:flex-row sm:justify-between">
       <p>© {year} {site.fullName}. Todos los derechos reservados.</p>
-      <p>AGON no es una isapre. Las condiciones finales de cada plan las define la institución.</p>
+      <p>AGON no es una isapre. La información del sitio es orientativa; las condiciones de cada plan las define la institución.</p>
     </div>
   </div>
 </footer>
