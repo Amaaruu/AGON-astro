@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { whatsappUrl } from '../data/site';
+---
+
+<Layout title="¡Gracias!" description="Recibimos tu solicitud de cotización.">
+  <section class="section">
+    <div class="container-agon max-w-xl text-center">
+      <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-50 text-brand-700">
+        <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" />
+        </svg>
+      </div>
+      <h1 class="mt-6 text-3xl sm:text-4xl">¡Gracias<span id="lead-name"></span>!</h1>
+      <p class="mt-4 text-lg text-slate-500">
+        Recibimos tus datos. Un asesor AGON te contactará pronto con una comparación de planes para ti.
+      </p>
+      <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+        <a href={whatsappUrl} target="_blank" rel="noopener" class="btn-primary">Adelantar por WhatsApp</a>
+        <a href="/" class="btn-secondary">Volver al inicio</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  try {
+    const lead = JSON.parse(sessionStorage.getItem('agon:lead') ?? 'null');
+    const first = lead?.nombre?.split(' ')[0];
+    if (first) document.getElementById('lead-name')!.textContent = `, ${first}`;
+  } catch {}
+</script>

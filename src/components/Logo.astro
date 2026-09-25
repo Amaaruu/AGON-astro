@@ -1,0 +1,26 @@
+---
+interface Props {
+  variant?: 'dark' | 'light';
+  class?: string;
+}
+const { variant = 'dark', class: className = '' } = Astro.props;
+const text = variant === 'light' ? 'text-white' : 'text-brand-950';
+const sub = variant === 'light' ? 'text-brand-200' : 'text-brand-600';
+---
+
+<a href="/" class={`inline-flex items-center gap-2.5 ${className}`} aria-label="Asesorías AGON, inicio">
+  <svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true">
+    <defs>
+      <linearGradient id="agon-g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#3568f0" />
+        <stop offset="1" stop-color="#0b1d40" />
+      </linearGradient>
+    </defs>
+    <path d="M20 2 36 11v18L20 38 4 29V11Z" fill="url(#agon-g)" />
+    <path d="M20 10 28.5 29h-4.2l-1.7-4h-5.2l-1.7 4h-4.2Zm0 7.6-1.6 4.1h3.2Z" fill="#fff" />
+  </svg>
+  <span class="flex flex-col leading-none">
+    <span class={`text-xl font-extrabold tracking-[0.12em] ${text}`}>AGON</span>
+    <span class={`text-[10px] font-semibold tracking-[0.25em] uppercase ${sub}`}>Asesorías</span>
+  </span>
+</a>

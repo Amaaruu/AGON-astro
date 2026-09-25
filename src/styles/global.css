@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+/* ==========================================================
+   AGON · Tokens de marca (azul zafiro)
+   Úsalos en Tailwind como: bg-brand-700, text-brand-900, etc.
+   ========================================================== */
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dae6ff;
+  --color-brand-200: #bdd3ff;
+  --color-brand-300: #90b6fd;
+  --color-brand-400: #5b8ef9;
+  --color-brand-500: #3568f0;
+  --color-brand-600: #1f4fd6;
+  --color-brand-700: #0f52ba; /* zafiro principal */
+  --color-brand-800: #103f8c;
+  --color-brand-900: #122f66;
+  --color-brand-950: #0b1d40;
+
+  --color-accent-400: #3fc1d9;
+  --color-accent-500: #1aa6c2;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white text-slate-700 antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply text-brand-950 font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .container-agon {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand-700 px-6 py-3 font-semibold text-white shadow-lg shadow-brand-700/25 transition hover:bg-brand-800 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-300 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-brand-200 bg-white px-6 py-3 font-semibold text-brand-800 transition hover:border-brand-400 hover:bg-brand-50;
+  }
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-slate-700;
+  }
+  .field-input {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-slate-900 placeholder:text-slate-400 transition focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-100;
+  }
+  .field-error {
+    @apply mt-1 text-xs text-red-600;
+  }
+  .section {
+    @apply py-16 sm:py-24;
+  }
+  .eyebrow {
+    @apply text-sm font-semibold tracking-wider text-brand-600 uppercase;
+  }
+}

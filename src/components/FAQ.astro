@@ -1,0 +1,34 @@
+---
+import SectionHeading from './ui/SectionHeading.astro';
+import { faq } from '../data/faq';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<section id="faq" class="section scroll-mt-16 bg-slate-50">
+  <div class="container-agon max-w-3xl">
+    <SectionHeading eyebrow="Preguntas frecuentes" title="Resolvemos tus dudas" />
+    <div class="mt-12 space-y-3">
+      {faq.map((f) => (
+        <details class="group rounded-xl border border-slate-200 bg-white px-5 open:shadow-sm">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 font-semibold text-brand-950 [&::-webkit-details-marker]:hidden">
+            {f.q}
+            <svg class="h-5 w-5 flex-none text-brand-600 transition group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" d="M12 5v14M5 12h14" />
+            </svg>
+          </summary>
+          <p class="pb-5 text-slate-600">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</section>

@@ -1,0 +1,40 @@
+---
+import QuoteForm from './QuoteForm.astro';
+
+const highlights = [
+  'Comparamos todas las isapres abiertas',
+  'Asesoría 100% gratuita',
+  'Te acompañamos hasta la firma',
+];
+---
+
+<section id="cotizar" class="relative overflow-hidden bg-gradient-to-br from-brand-950 via-brand-900 to-brand-700 scroll-mt-16">
+  <div class="pointer-events-none absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-brand-500/30 blur-3xl"></div>
+  <div class="pointer-events-none absolute -bottom-40 -left-20 h-[400px] w-[400px] rounded-full bg-accent-500/20 blur-3xl"></div>
+
+  <div class="container-agon relative grid items-center gap-12 py-16 lg:grid-cols-2 lg:py-24">
+    <div class="text-white">
+      <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-brand-100">
+        <span class="h-2 w-2 rounded-full bg-accent-400"></span> Asesoría en planes de salud · Chile
+      </span>
+      <h1 class="mt-6 text-4xl leading-tight !text-white sm:text-5xl">
+        Encuentra el plan de isapre <span class="text-accent-400">que de verdad te conviene</span>
+      </h1>
+      <p class="mt-5 max-w-lg text-lg text-brand-100">
+        Déjanos tus datos y un asesor AGON compara por ti los planes según tu edad, renta, cargas y región.
+      </p>
+      <ul class="mt-8 space-y-3">
+        {highlights.map((h) => (
+          <li class="flex items-center gap-3 text-brand-50">
+            <svg class="h-5 w-5 flex-none text-accent-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L8 12.6l7.3-7.3a1 1 0 0 1 1.4 0Z" clip-rule="evenodd" />
+            </svg>
+            {h}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <QuoteForm />
+  </div>
+</section>

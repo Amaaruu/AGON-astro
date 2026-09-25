@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTA from '../components/CTA.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import { isapres } from '../data/isapres';
+---
+
+<Layout title="Isapres en Chile" description="Conoce las isapres abiertas en Chile y compara sus planes de salud con la asesoría gratuita de AGON.">
+  <section class="bg-brand-950 py-16 text-white">
+    <div class="container-agon">
+      <p class="eyebrow !text-accent-400">Isapres</p>
+      <h1 class="mt-2 text-4xl !text-white sm:text-5xl">Isapres abiertas en Chile</h1>
+      <p class="mt-4 max-w-2xl text-lg text-brand-100">
+        Cada isapre ofrece cientos de planes con diferentes coberturas, clínicas en convenio y precios. Te ayudamos a filtrar los que se ajustan a ti.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-agon">
+      <SectionHeading title="¿Con qué isapres trabajamos?" subtitle="Comparamos planes de todas estas instituciones." />
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {isapres.map((i) => (
+          <article class="flex flex-col rounded-2xl border border-slate-200 p-6">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-700 text-lg font-bold text-white">
+              {i.name.charAt(0)}
+            </div>
+            <h2 class="mt-4 text-xl">{i.name}</h2>
+            <p class="mt-2 flex-1 text-slate-500">Isapre {i.type}. Consulta los planes disponibles para tu perfil.</p>
+            <a href="/#cotizar" class="mt-5 text-sm font-semibold text-brand-700 hover:text-brand-900">Cotizar planes {i.name} →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</Layout>

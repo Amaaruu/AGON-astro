@@ -1,0 +1,40 @@
+---
+import Logo from './Logo.astro';
+import { site, nav, whatsappUrl } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-brand-950 text-brand-100">
+  <div class="container-agon grid gap-10 py-14 md:grid-cols-3">
+    <div>
+      <Logo variant="light" />
+      <p class="mt-4 max-w-xs text-sm leading-relaxed text-brand-200">
+        Asesoría independiente para comparar planes de salud en Chile. Te ayudamos a decidir con información clara.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="text-sm font-semibold tracking-wider !text-white uppercase">Navegación</h3>
+      <ul class="mt-4 space-y-2 text-sm">
+        {nav.map((item) => (
+          <li><a href={item.href} class="hover:text-white">{item.label}</a></li>
+        ))}
+        <li><a href="/#cotizar" class="hover:text-white">Cotizar</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="text-sm font-semibold tracking-wider !text-white uppercase">Contacto</h3>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li><a href={`mailto:${site.email}`} class="hover:text-white">{site.email}</a></li>
+        <li><a href={whatsappUrl} target="_blank" rel="noopener" class="hover:text-white">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="container-agon flex flex-col gap-2 py-6 text-xs text-brand-300 sm:flex-row sm:justify-between">
+      <p>© {year} {site.fullName}. Todos los derechos reservados.</p>
+      <p>AGON no es una isapre. Las condiciones finales de cada plan las define la institución.</p>
+    </div>
+  </div>
+</footer>

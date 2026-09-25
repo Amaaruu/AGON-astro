@@ -1,0 +1,33 @@
+---
+import SectionHeading from './ui/SectionHeading.astro';
+
+const steps = [
+  { title: 'Completa el formulario', text: 'Nos cuentas tu edad, renta, cargas y región.' },
+  { title: 'Analizamos tu perfil', text: 'Un asesor revisa las alternativas disponibles para ti.' },
+  { title: 'Comparamos contigo', text: 'Te mostramos las mejores opciones lado a lado.' },
+  { title: 'Tú decides', text: 'Si te convence, te acompañamos en la contratación.' },
+];
+---
+
+<section id="como-funciona" class="section scroll-mt-16">
+  <div class="container-agon">
+    <SectionHeading eyebrow="Cómo funciona" title="Cuatro pasos para cambiar tu plan" subtitle="Simple, rápido y sin letra chica." />
+    <ol class="mt-14 grid gap-8 md:grid-cols-4">
+      {steps.map((s, i) => (
+        <li class="relative text-center">
+          {i < steps.length - 1 && (
+            <span class="absolute top-7 left-[calc(50%+2.5rem)] hidden h-0.5 w-[calc(100%-5rem)] bg-brand-100 md:block" aria-hidden="true"></span>
+          )}
+          <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-700 text-xl font-bold text-white shadow-lg shadow-brand-700/30">
+            {i + 1}
+          </span>
+          <h3 class="mt-5 text-lg">{s.title}</h3>
+          <p class="mt-2 text-slate-500">{s.text}</p>
+        </li>
+      ))}
+    </ol>
+    <div class="mt-12 text-center">
+      <a href="#cotizar" class="btn-primary">Comenzar ahora</a>
+    </div>
+  </div>
+</section>

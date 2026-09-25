@@ -1,0 +1,84 @@
+---
+import { previsiones } from '../data/isapres';
+import { regiones, rangosRenta, opcionesCargas } from '../data/regiones';
+---
+
+<div class="rounded-2xl bg-white p-6 shadow-2xl shadow-brand-950/30 sm:p-8">
+  <h2 class="text-2xl">Cotiza tu plan de salud</h2>
+  <p class="mt-1 text-sm text-slate-500">Toma menos de 1 minuto. Sin costo ni compromiso.</p>
+
+  <form id="quote-form" class="mt-6 grid gap-4 sm:grid-cols-2" novalidate>
+    <div class="sm:col-span-2">
+      <label for="nombre" class="field-label">Nombre completo</label>
+      <input id="nombre" name="nombre" type="text" class="field-input" placeholder="Ej: Camila Rojas" autocomplete="name" required minlength="3" />
+      <p class="field-error hidden" data-error-for="nombre">Ingresa tu nombre.</p>
+    </div>
+
+    <div>
+      <label for="telefono" class="field-label">Teléfono</label>
+      <input id="telefono" name="telefono" type="tel" class="field-input" placeholder="+56 9 1234 5678" autocomplete="tel" required />
+      <p class="field-error hidden" data-error-for="telefono">Ingresa un celular válido (9 dígitos).</p>
+    </div>
+
+    <div>
+      <label for="email" class="field-label">Email</label>
+      <input id="email" name="email" type="email" class="field-input" placeholder="tucorreo@email.com" autocomplete="email" required />
+      <p class="field-error hidden" data-error-for="email">Ingresa un email válido.</p>
+    </div>
+
+    <div>
+      <label for="edad" class="field-label">Edad</label>
+      <input id="edad" name="edad" type="number" inputmode="numeric" min="18" max="99" class="field-input" placeholder="Ej: 32" required />
+      <p class="field-error hidden" data-error-for="edad">Edad entre 18 y 99 años.</p>
+    </div>
+
+    <div>
+      <label for="prevision" class="field-label">Previsión actual</label>
+      <select id="prevision" name="prevision" class="field-input" required>
+        <option value="" disabled selected>Selecciona</option>
+        {previsiones.map((p) => <option value={p.value}>{p.label}</option>)}
+      </select>
+      <p class="field-error hidden" data-error-for="prevision">Selecciona una opción.</p>
+    </div>
+
+    <div>
+      <label for="cargas" class="field-label">N.º de cargas</label>
+      <select id="cargas" name="cargas" class="field-input" required>
+        {opcionesCargas.map((c) => <option value={c}>{c}</option>)}
+      </select>
+    </div>
+
+    <div>
+      <label for="renta" class="field-label">Renta líquida mensual</label>
+      <select id="renta" name="renta" class="field-input" required>
+        <option value="" disabled selected>Selecciona</option>
+        {rangosRenta.map((r) => <option value={r.value}>{r.label}</option>)}
+      </select>
+      <p class="field-error hidden" data-error-for="renta">Selecciona un rango.</p>
+    </div>
+
+    <div class="sm:col-span-2">
+      <label for="region" class="field-label">Región</label>
+      <select id="region" name="region" class="field-input" required>
+        <option value="" disabled selected>Selecciona tu región</option>
+        {regiones.map((r) => <option value={r}>{r}</option>)}
+      </select>
+      <p class="field-error hidden" data-error-for="region">Selecciona tu región.</p>
+    </div>
+
+    <label class="flex items-start gap-2 text-xs text-slate-500 sm:col-span-2">
+      <input type="checkbox" name="acepta" class="mt-0.5 h-4 w-4 rounded border-slate-300 accent-brand-700" required />
+      <span>Acepto que AGON me contacte para asesorarme. Mis datos se usan solo para esta cotización.</span>
+    </label>
+    <p class="field-error hidden -mt-3 sm:col-span-2" data-error-for="acepta">Debes aceptar para continuar.</p>
+
+    <button type="submit" class="btn-primary mt-2 w-full sm:col-span-2">
+      <span data-label>Quiero comparar planes</span>
+    </button>
+  </form>
+</div>
+
+<script>
+  import { initQuoteForm } from '../scripts/quote-form';
+  initQuoteForm('quote-form');
+</script>

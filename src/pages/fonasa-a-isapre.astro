@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTA from '../components/CTA.astro';
+
+const puntos = [
+  { title: 'Tu 7% va a un plan a tu medida', text: 'En Fonasa tu cotización se asigna a un tramo; en una isapre eliges un plan con coberturas y red de prestadores específicas.' },
+  { title: 'Declaración de Salud', text: 'Para ingresar debes declarar tus condiciones preexistentes y las de tus cargas. La isapre evalúa y responde tu solicitud.' },
+  { title: 'Precio según tu perfil', text: 'El valor del plan depende de la edad y el número de beneficiarios. Si supera tu 7%, pagas la diferencia.' },
+  { title: 'Puedes volver', text: 'Después del primer año de contrato puedes desafiliarte y regresar a Fonasa o cambiar de isapre.' },
+];
+---
+
+<Layout title="Cambiarse de Fonasa a Isapre" description="Todo lo que necesitas saber para cambiarte de Fonasa a una isapre, con la asesoría gratuita de AGON.">
+  <section class="bg-brand-950 py-16 text-white">
+    <div class="container-agon">
+      <p class="eyebrow !text-accent-400">Fonasa a Isapre</p>
+      <h1 class="mt-2 max-w-3xl text-4xl !text-white sm:text-5xl">¿Pensando en dejar Fonasa? Te explicamos cómo funciona</h1>
+      <p class="mt-4 max-w-2xl text-lg text-brand-100">
+        Cambiarse a una isapre puede darte más opciones de clínicas y coberturas. Te ayudamos a evaluar si te conviene y a elegir bien.
+      </p>
+      <a href="/#cotizar" class="btn-primary mt-8 !bg-white !text-brand-800">Evaluar mi caso gratis</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-agon grid gap-6 md:grid-cols-2">
+      {puntos.map((p, i) => (
+        <article class="rounded-2xl border border-slate-200 p-6">
+          <span class="text-sm font-bold text-brand-600">0{i + 1}</span>
+          <h2 class="mt-2 text-xl">{p.title}</h2>
+          <p class="mt-2 text-slate-500">{p.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <CTA title="¿Te conviene cambiarte?" text="Un asesor AGON revisa tu caso y te dice honestamente si una isapre es mejor para ti." />
+</Layout>
