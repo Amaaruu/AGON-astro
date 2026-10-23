@@ -11,13 +11,6 @@ export const site = {
   whatsappMessage: 'Hola, quiero que me ayuden a revisar mi plan de salud',
 };
 
-// Indicadores usados por la calculadora del 7%.
-// TODO: actualizar cada año (tope imponible) y periódicamente (UF). Fuentes: sii.cl / spensiones.cl
-export const indicadores = {
-  uf: 40000, // valor referencial en CLP
-  topeImponibleUF: 87.8, // tope imponible mensual para salud, en UF
-};
-
 export const nav = [
   { label: 'Nosotros', href: '/#nosotros' },
   { label: 'Chequeo gratis', href: '/#chequeo' },

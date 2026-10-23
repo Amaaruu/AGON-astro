@@ -4,13 +4,7 @@ export interface ContactLead {
   nombre: string;
   telefono: string;
   email: string;
-  motivo: string;
   prevision: string;
-  edad?: number;
-  cargas?: string;
-  renta?: string;
-  region?: string;
-  mensaje?: string;
   /** Resumen del chequeo, si la persona lo completó */
   chequeo?: string;
 }
@@ -19,9 +13,7 @@ const validators: Record<string, (v: string) => boolean> = {
   nombre: (v) => v.trim().length >= 3,
   telefono: (v) => /^(\+?56)?\s?9\d{8}$/.test(v.replace(/[\s-]/g, '')),
   email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()),
-  motivo: (v) => v !== '',
   prevision: (v) => v !== '',
-  edad: (v) => v === '' || (Number(v) >= 18 && Number(v) <= 99),
 };
 
 function setError(form: HTMLFormElement, name: string, show: boolean) {
@@ -41,20 +33,15 @@ async function submitLead(lead: ContactLead): Promise<void> {
   await new Promise((r) => setTimeout(r, 600));
 }
 
-const optional = (v: FormDataEntryValue | null) => String(v ?? '').trim() || undefined;
-
 export function initContactForm(id: string) {
   const form = document.getElementById(id) as HTMLFormElement | null;
   if (!form) return;
 
-  // Recibe el resultado del chequeo y precompleta lo que se pueda
+  // Recibe el resultado del chequeo y lo adjunta al lead
   window.addEventListener('agon:chequeo', (e) => {
     const result = (e as CustomEvent<ChequeoResult>).detail;
     (form.elements.namedItem('chequeo') as HTMLInputElement).value = result.summary;
-    form.querySelector('[data-chequeo-badge]')?.classList.replace('hidden', 'flex');
-
-    const motivo = form.elements.namedItem('motivo') as HTMLSelectElement;
-    if (!motivo.value) motivo.value = result.prevision === 'fonasa' ? 'fonasa-isapre' : 'revisar-plan';
+    form.querySelector('[data-chequeo-badge]')?.classList.remove('hidden');
     const prevision = form.elements.namedItem('prevision') as HTMLSelectElement;
     if (!prevision.value && result.prevision === 'fonasa') prevision.value = 'fonasa';
   });
@@ -80,9 +67,7 @@ export function initContactForm(id: string) {
     if (!acepta) valid = false;
 
     if (!valid) {
-      const invalid = form.querySelector<HTMLElement>('[aria-invalid="true"]');
-      invalid?.closest('details')?.setAttribute('open', '');
-      invalid?.focus();
+      form.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus();
       return;
     }
 
@@ -92,19 +77,12 @@ export function initContactForm(id: string) {
     label.textContent = 'Enviando…';
 
     try {
-      const edad = optional(data.get('edad'));
       await submitLead({
         nombre: String(data.get('nombre')).trim(),
         telefono: String(data.get('telefono')).trim(),
         email: String(data.get('email')).trim(),
-        motivo: String(data.get('motivo')),
         prevision: String(data.get('prevision')),
-        edad: edad ? Number(edad) : undefined,
-        cargas: optional(data.get('cargas')),
-        renta: optional(data.get('renta')),
-        region: optional(data.get('region')),
-        mensaje: optional(data.get('mensaje')),
-        chequeo: optional(data.get('chequeo')),
+        chequeo: String(data.get('chequeo') ?? '').trim() || undefined,
       });
       window.location.href = '/gracias';
     } catch {
